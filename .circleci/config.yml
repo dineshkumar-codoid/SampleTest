@@ -11,12 +11,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: dinesh_repo-{{ checksum "pom.xml" }}
+          key: dinesh_repo-{{ checksum "pom.xml" }}
       - run: mvn dependency:go-offline
       - save_cache:
-        paths:
-          - ~/.m2
-        key: dinesh_repo-{{ checksum "pom.xml" }}
+          paths:
+            - ~/.m2
+          key: dinesh_repo-{{ checksum "pom.xml" }}
       - run: mvn compile test
       - store_test_results:
-        path: target/surefire-reports
+          path: target/surefire-reports
