@@ -5,14 +5,14 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/dinesh_repo
     docker:
       - image: circleci/openjdk:8-jdk
-    working_directory: ~/dinesh_repo
     steps:
       - checkout
       - restore_cache:
         key: ~/dinesh_repo-{{ checksum "pom.xml" }}
-      run: mvn dependency:go-offline
+      - run: mvn dependency:go-offline
       - save_cache:
         paths:
           - ~/.m2
